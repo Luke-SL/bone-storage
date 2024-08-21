@@ -80,18 +80,28 @@
           </q-btn>
         </div>
       </q-toolbar>
-      <q-toolbar class="bg-dark flex flex-center">
-        <q-toolbar-title class="q-mr-xl">
+      <q-toolbar class="bg-dark flex flex-center" v-if="$q.platform.is.desktop">
+        <q-toolbar-title class="q-ml-lg col-4">
           <q-img
             src="../assets/everycar-logo.png"
             style="height: 140px; max-width: 150px"
           />
         </q-toolbar-title>
-        <div class="q-ml-xl">
-          <q-input rounded outlined v-model="text" bg-color="grey-9">
+        <div class="q-ml-xl col-2">
+          <q-input
+            rounded
+            outlined
+            v-model="text"
+            bg-color="grey-9"
+            label="O QUE VOCÊ PROCURA?"
+            label-color="amber-9"
+            color="amber-9"
+          >
             <template v-slot:append>
               <q-avatar>
-                <q-icon name="mdi-magnify text-amber" />
+                <q-btn round>
+                  <q-icon name="mdi-magnify text-amber" />
+                </q-btn>
               </q-avatar>
             </template>
           </q-input>
@@ -100,6 +110,42 @@
           <p>(84) 9 9999-8888</p>
         </div>
       </q-toolbar>
+      <q-toolbar class="flex flex-center bg-dark" v-else>
+        <q-toolbar-title>
+          <q-img src="../assets/everycar-logo.png" />
+        </q-toolbar-title>
+      </q-toolbar>
+      <div
+        class="bg-amber-8 flex flex-center row no-wrap"
+        v-if="$q.platform.is.desktop"
+      >
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Lançamentos" />
+        <q-btn
+          color="dark"
+          class="btn-menu q-mx-lg"
+          flat
+          label="Acessórios"
+          @mouseover="hello = true"
+        >
+          <q-menu v-model="hello" @mouseleave="hello = false">
+            <q-list>
+              <q-item clickable>
+                <q-item-section>TODOS OS ACESSÁRIOS</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>ADESIVOS</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Bonés" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisetas" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Polos" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisas" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Calçados" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Femininas" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Outlet" />
+      </div>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered>
@@ -174,6 +220,8 @@ const linksList = [
 ];
 
 const leftDrawerOpen = ref(false);
+
+const hello = ref(false);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
