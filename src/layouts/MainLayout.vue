@@ -73,10 +73,10 @@
 
         <div class="row" v-else>
           <q-btn round>
-            <q-icon name="mdi-cart" />
+            <q-icon flat name="mdi-cart" />
           </q-btn>
           <q-btn round>
-            <q-icon name="mdi-magnify" />
+            <q-icon flat name="mdi-magnify" />
           </q-btn>
         </div>
       </q-toolbar>
@@ -91,7 +91,6 @@
           <q-input
             rounded
             outlined
-            v-model="text"
             bg-color="grey-9"
             label="O QUE VOCÊ PROCURA?"
             label-color="amber-9"
@@ -110,9 +109,13 @@
           <p>(84) 9 9999-8888</p>
         </div>
       </q-toolbar>
-      <q-toolbar class="flex flex-center bg-dark" v-else>
-        <q-toolbar-title>
-          <q-img src="../assets/everycar-logo.png" />
+      <q-toolbar class="bg-dark" v-else>
+        <q-toolbar-title class="flex flex-center">
+          <q-img
+            src="../assets/everycar-logo.png"
+            height="200px"
+            width="250px"
+          />
         </q-toolbar-title>
       </q-toolbar>
       <div
@@ -125,9 +128,10 @@
           class="btn-menu q-mx-lg"
           flat
           label="Acessórios"
-          @mouseover="hello = true"
+          @mouseover="btn_acessorios = true"
+          @mouseleave="btn_acessorios = false"
         >
-          <q-menu v-model="hello" @mouseleave="hello = false">
+          <q-menu v-model="btn_acessorios" @mouseleave="btn_acessorios = false">
             <q-list>
               <q-item clickable>
                 <q-item-section>TODOS OS ACESSÁRIOS</q-item-section>
@@ -142,7 +146,31 @@
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisetas" />
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Polos" />
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisas" />
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Calçados" />
+        <q-btn
+          color="dark"
+          class="btn-menu q-mx-lg"
+          flat
+          label="Calçados"
+          @mouseover="btn_calcados = true"
+          @mouseleave="btn_calcados = false"
+        >
+          <q-menu v-model="btn_calcados" @mouseleave="btn_calcados = false">
+            <q-list>
+              <q-item clickable>
+                <q-item-section>ADVENTURE</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTAS COM C.A.</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTINAS COUNTRY.</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTAS ULTRALEVE</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Femininas" />
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Outlet" />
       </div>
@@ -156,9 +184,13 @@
           v-for="link in linksList"
           :key="link.title"
           v-bind="link"
+          dropdown_acessorios
         />
       </q-list>
     </q-drawer>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn fab icon="mdi-whatsapp" color="green" />
+    </q-page-sticky>
 
     <q-page-container>
       <router-view />
@@ -221,7 +253,8 @@ const linksList = [
 
 const leftDrawerOpen = ref(false);
 
-const hello = ref(false);
+const btn_acessorios = ref(false);
+const btn_calcados = ref(false);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
