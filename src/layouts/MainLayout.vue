@@ -19,9 +19,7 @@
           </p>
         </q-toolbar-title>
 
-        <q-toolbar-title class="q-mt-md" v-else>
-          <p>MENU</p>
-        </q-toolbar-title>
+        <q-toolbar-title v-else> MENU </q-toolbar-title>
         <div
           class="row no-wrap text-weight-light q-mt-md"
           v-if="$q.platform.is.desktop"
@@ -72,14 +70,15 @@
         </div>
 
         <div class="row" v-else>
-          <q-btn round>
-            <q-icon flat name="mdi-cart" />
+          <q-btn flat round>
+            <q-icon name="mdi-cart" />
           </q-btn>
-          <q-btn round>
-            <q-icon flat name="mdi-magnify" />
+          <q-btn flat round>
+            <q-icon name="mdi-magnify" />
           </q-btn>
         </div>
       </q-toolbar>
+      <q-separator color="grey" />
       <q-toolbar class="bg-dark flex flex-center" v-if="$q.platform.is.desktop">
         <q-toolbar-title class="q-ml-lg col-4">
           <q-img
@@ -87,7 +86,7 @@
             style="height: 140px; max-width: 150px"
           />
         </q-toolbar-title>
-        <div class="q-ml-xl col-2">
+        <div class="q-ml-xl col-2" style="min-width: 180px">
           <q-input
             rounded
             outlined
@@ -113,7 +112,7 @@
         <q-toolbar-title class="flex flex-center">
           <q-img
             src="../assets/everycar-logo.png"
-            height="200px"
+            height="150px"
             width="250px"
           />
         </q-toolbar-title>
@@ -188,9 +187,6 @@
         />
       </q-list>
     </q-drawer>
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn fab icon="mdi-whatsapp" color="green" />
-    </q-page-sticky>
 
     <q-page-container>
       <router-view />
