@@ -75,6 +75,30 @@
           </q-btn>
           <q-btn flat round>
             <q-icon name="mdi-magnify" />
+            <q-menu
+              transition-show="slide-down"
+              transition-hide="jump-up"
+              cover
+              style="width: 100%"
+              square
+            >
+              <q-list>
+                <q-item>
+                  <q-item-section>
+                    <q-input borderless dense>
+                      <template v-slot:prepend>
+                        <q-icon name="mdi-arrow-left" />
+                      </template>
+                      <template v-slot:append>
+                        <q-icon name="mdi-magnify" />
+                      </template>
+
+                      <template v-slot:hint> Field hint </template>
+                    </q-input>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
           </q-btn>
         </div>
       </q-toolbar>
