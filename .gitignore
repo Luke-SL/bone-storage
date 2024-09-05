@@ -1,5 +1,5 @@
 .DS_Store
-.vscode/
+.vscode/*
 .thumbs.db
 node_modules
 
@@ -34,3 +34,5 @@ yarn-error.log*
 .env.local*
 
 /src/assets/*
+
+/src/pages/assets/*
