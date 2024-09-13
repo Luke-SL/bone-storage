@@ -6,11 +6,4 @@ const formatCurrency = (currency) => {
   return formatted;
 };
 
-const formatNotDisplayCurrency = (currency) => {
-  const formatted = currency.toLocaleString("pt-br", {
-    currency: "BRL",
-  });
-  return formatted;
-};
-
-export { formatCurrency, formatNotDisplayCurrency };
+export { formatCurrency };
