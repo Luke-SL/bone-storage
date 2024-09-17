@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-container">
+  <div class="scroll-container" v-if="$q.platform.is.desktop">
     <!-- Scroll Area with Horizontal Scroll -->
     <div
       class="scroll-area"
@@ -44,7 +44,7 @@
     </div>
 
     <!-- Navigation Buttons -->
-    <div class="scroll-controls" v-if="$q.platform.is.desktop">
+    <div class="scroll-controls">
       <q-btn
         class="scroll-control scroll-left"
         round
@@ -66,6 +66,38 @@
         @click="scrollRight"
       />
     </div>
+  </div>
+  <div v-else>
+    <q-virtual-scroll
+      :items="heavyList"
+      virtual-scroll-horizontal
+      v-slot="{ item, index }"
+    >
+      <q-card :key="index" class="item-card" flat borderless>
+        <q-img :src="item.image" class="item-image" />
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">{{ item.name }}</div>
+          </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          Por
+          <div class="text-subtitle1 text-bold">
+            {{ formatCurrency(item.price) }}
+          </div>
+          <div>
+            6x de
+            <span class="text-subtitle1 text-bold">{{
+              formatCurrency(item.part)
+            }}</span>
+            sem juros
+          </div>
+        </q-card-section>
+        <q-card-actions>
+          <q-btn outline color="amber-9">Comprar</q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-virtual-scroll>
   </div>
 </template>
 

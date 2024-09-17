@@ -13,38 +13,6 @@
         <q-carousel-slide :name="2" img-src="carousel/carousel-2.jpg" />
         <q-carousel-slide :name="3" img-src="carousel/carousel-3.jpg" />
         <q-carousel-slide :name="4" img-src="carousel/carousel-4.jpg" />
-
-        <template v-slot:control>
-          <q-carousel-control
-            position="bottom-left"
-            :offset="[18, 180]"
-            class="q-gutter-xs"
-            v-if="$q.platform.is.desktop"
-          >
-            <q-btn
-              push
-              round
-              dense
-              color="orange"
-              text-color="black"
-              icon="arrow_left"
-              @click="$refs.carousel.previous()"
-            />
-          </q-carousel-control>
-          <q-carousel-control
-            position="bottom-right"
-            :offset="[18, 180]"
-            class="q-gutter-xs"
-            ><q-btn
-              push
-              round
-              dense
-              color="orange"
-              text-color="black"
-              icon="arrow_right"
-              @click="$refs.carousel.next()"
-          /></q-carousel-control>
-        </template>
       </q-carousel>
       <q-carousel
         swipeable

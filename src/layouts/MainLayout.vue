@@ -1,17 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated v-if="$q.platform.is.desktop">
       <q-toolbar class="bg-dark flex flex-center">
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-          v-if="$q.platform.is.mobile"
-        />
-        <q-toolbar-title class="col-5 q-mt-md" v-if="$q.platform.is.desktop">
+        <q-toolbar-title class="col-5 q-mt-md">
           <p class="text-caption">
             OLÁ! FAÇA SEU
             <a href="#" class="text-amber credential-links">LOGIN</a> OU
@@ -19,11 +10,7 @@
           </p>
         </q-toolbar-title>
 
-        <q-toolbar-title v-else> MENU </q-toolbar-title>
-        <div
-          class="row no-wrap text-weight-light q-mt-md"
-          v-if="$q.platform.is.desktop"
-        >
+        <div class="row no-wrap text-weight-light q-mt-md">
           <div class="col-xs-6 col-sm-4 col-md-4">
             <p>
               <q-item-label
@@ -68,8 +55,103 @@
             </p>
           </div>
         </div>
+      </q-toolbar>
+      <q-separator color="grey" />
+      <q-toolbar class="bg-dark flex flex-center">
+        <q-toolbar-title class="q-ml-lg col-4">
+          <q-img
+            src="../assets/everycar-logo.png"
+            style="height: 140px; max-width: 150px"
+          />
+        </q-toolbar-title>
+        <div class="q-ml-xl col-2" style="min-width: 180px">
+          <q-input
+            rounded
+            outlined
+            bg-color="grey-9"
+            label="O QUE VOCÊ PROCURA?"
+            label-color="amber-9"
+            color="amber-9"
+          >
+            <template v-slot:append>
+              <q-avatar>
+                <q-btn round>
+                  <q-icon name="mdi-magnify text-amber" />
+                </q-btn>
+              </q-avatar>
+            </template>
+          </q-input>
+        </div>
+        <div class="text-amber text-h5 q-mt-md q-ml-lg">
+          <p>(84) 9 9999-8888</p>
+        </div>
+      </q-toolbar>
 
-        <div class="row" v-else>
+      <div class="bg-amber-8 flex flex-center row no-wrap">
+        <q-btn
+          color="dark"
+          class="btn-menu q-mx-lg"
+          flat
+          label="Acessórios"
+          @mouseover="btn_acessorios = true"
+          @mouseleave="btn_acessorios = false"
+        >
+          <q-menu v-model="btn_acessorios" @mouseleave="btn_acessorios = false">
+            <q-list>
+              <q-item clickable>
+                <q-item-section>TODOS OS ACESSÁRIOS</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>ADESIVOS</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <q-btn color="dark" class="btn-menu q-mx-sm" flat label="Bonés" />
+        <q-btn color="dark" class="btn-menu q-mx-sm" flat label="Camisetas" />
+        <q-btn color="dark" class="btn-menu q-mx-sm" flat label="Polos" />
+        <q-btn color="dark" class="btn-menu q-mx-sm" flat label="Camisas" />
+        <q-btn
+          color="dark"
+          class="btn-menu q-mx-lg"
+          flat
+          label="Calçados"
+          @mouseover="btn_calcados = true"
+          @mouseleave="btn_calcados = false"
+        >
+          <q-menu v-model="btn_calcados" @mouseleave="btn_calcados = false">
+            <q-list>
+              <q-item clickable>
+                <q-item-section>ADVENTURE</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTAS COM C.A.</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTINAS COUNTRY.</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-item-section>BOTAS ULTRALEVE</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Femininas" />
+        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Outlet" />
+      </div>
+    </q-header>
+    <q-header elevated v-else>
+      <q-toolbar class="bg-dark flex flex-center">
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+        <q-toolbar-title> MENU </q-toolbar-title>
+        <div class="row">
           <q-btn flat round>
             <q-icon name="mdi-cart" />
           </q-btn>
@@ -102,37 +184,7 @@
           </q-btn>
         </div>
       </q-toolbar>
-      <q-separator color="grey" />
-      <q-toolbar class="bg-dark flex flex-center" v-if="$q.platform.is.desktop">
-        <q-toolbar-title class="q-ml-lg col-4">
-          <q-img
-            src="../assets/everycar-logo.png"
-            style="height: 140px; max-width: 150px"
-          />
-        </q-toolbar-title>
-        <div class="q-ml-xl col-2" style="min-width: 180px">
-          <q-input
-            rounded
-            outlined
-            bg-color="grey-9"
-            label="O QUE VOCÊ PROCURA?"
-            label-color="amber-9"
-            color="amber-9"
-          >
-            <template v-slot:append>
-              <q-avatar>
-                <q-btn round>
-                  <q-icon name="mdi-magnify text-amber" />
-                </q-btn>
-              </q-avatar>
-            </template>
-          </q-input>
-        </div>
-        <div class="text-amber text-h5 q-mt-md q-ml-lg">
-          <p>(84) 9 9999-8888</p>
-        </div>
-      </q-toolbar>
-      <q-toolbar class="bg-dark" v-else>
+      <q-toolbar class="bg-dark flex flex-center" v-show="isAtTop">
         <q-toolbar-title class="flex flex-center">
           <q-img
             src="../assets/everycar-logo.png"
@@ -141,62 +193,6 @@
           />
         </q-toolbar-title>
       </q-toolbar>
-      <div
-        class="bg-amber-8 flex flex-center row no-wrap"
-        v-if="$q.platform.is.desktop"
-      >
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Lançamentos" />
-        <q-btn
-          color="dark"
-          class="btn-menu q-mx-lg"
-          flat
-          label="Acessórios"
-          @mouseover="btn_acessorios = true"
-          @mouseleave="btn_acessorios = false"
-        >
-          <q-menu v-model="btn_acessorios" @mouseleave="btn_acessorios = false">
-            <q-list>
-              <q-item clickable>
-                <q-item-section>TODOS OS ACESSÁRIOS</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section>ADESIVOS</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Bonés" />
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisetas" />
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Polos" />
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Camisas" />
-        <q-btn
-          color="dark"
-          class="btn-menu q-mx-lg"
-          flat
-          label="Calçados"
-          @mouseover="btn_calcados = true"
-          @mouseleave="btn_calcados = false"
-        >
-          <q-menu v-model="btn_calcados" @mouseleave="btn_calcados = false">
-            <q-list>
-              <q-item clickable>
-                <q-item-section>ADVENTURE</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section>BOTAS COM C.A.</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section>BOTINAS COUNTRY.</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section>BOTAS ULTRALEVE</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Femininas" />
-        <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Outlet" />
-      </div>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered>
@@ -215,11 +211,12 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    Olá
   </q-layout>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 
 defineOptions({
@@ -276,7 +273,21 @@ const leftDrawerOpen = ref(false);
 const btn_acessorios = ref(false);
 const btn_calcados = ref(false);
 
+const isAtTop = ref(true);
+
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
+
+function handleScroll() {
+  isAtTop.value = window.scrollY <= 320;
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
