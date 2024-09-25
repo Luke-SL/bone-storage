@@ -47,7 +47,7 @@
     </h1>
     <HorizontalScroll :list="releaseList" />
     <h1 class="flex flex-center text-bold text-h5 q-my-xl">MAIS PEDIDOS</h1>
-    <HorizontalScroll :list="mostWantedList" />
+    <HorizontalScroll :list="shirtList" />
     <q-page-sticky position="bottom-right" :offset="[18, 65]">
       <q-btn fab icon="mdi-whatsapp" color="green" />
     </q-page-sticky>
@@ -56,7 +56,7 @@
 
 <script>
 import { ref } from "vue";
-import { figuresList, releaseList, mostWantedList } from "./assets/tables";
+import { figuresList, releaseList, shirtList } from "./assets/tables";
 import HorizontalScroll from "src/components/HorizontalScroll.vue";
 
 export default {
@@ -66,7 +66,7 @@ export default {
       slide: ref(1),
       figuresList,
       releaseList,
-      mostWantedList,
+      shirtList,
     };
   },
 };

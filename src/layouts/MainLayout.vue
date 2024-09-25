@@ -1,16 +1,28 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated v-if="$q.platform.is.desktop">
+    <q-header elevated>
       <q-toolbar class="bg-dark flex flex-center">
-        <q-toolbar-title class="col-5 q-mt-md">
+        <!-- Mobile Toggle Button -->
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+          class="mobile-menu-btn"
+        />
+        <!-- Desktop Layout -->
+        <q-toolbar-title class="col-5 q-mt-md title-toolbar-desktop">
           <p class="text-caption">
             OLÁ! FAÇA SEU
             <a href="#" class="text-amber credential-links">LOGIN</a> OU
             <a href="#" class="text-amber credential-links">CADASTRE-SE</a>
           </p>
         </q-toolbar-title>
+        <q-toolbar-title class="title-toolbar-mobile"> MENU </q-toolbar-title>
 
-        <div class="row no-wrap text-weight-light q-mt-md">
+        <div class="row no-wrap text-weight-light q-mt-md desktop-client-menu">
           <div class="col-xs-6 col-sm-4 col-md-4">
             <p>
               <q-item-label
@@ -55,9 +67,43 @@
             </p>
           </div>
         </div>
+        <!-- Mobile Layout -->
+        <div class="row mobile-client-menu">
+          <q-btn flat round>
+            <q-icon name="mdi-cart" />
+          </q-btn>
+          <q-btn flat round>
+            <q-icon name="mdi-magnify" />
+            <q-menu
+              transition-show="slide-down"
+              transition-hide="jump-up"
+              cover
+              style="width: 100%"
+              square
+            >
+              <q-list>
+                <q-item>
+                  <q-item-section>
+                    <q-input borderless dense>
+                      <template v-slot:prepend>
+                        <q-icon name="mdi-arrow-left" />
+                      </template>
+                      <template v-slot:append>
+                        <q-icon name="mdi-magnify" />
+                      </template>
+
+                      <template v-slot:hint> Field hint </template>
+                    </q-input>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </div>
       </q-toolbar>
       <q-separator color="grey" />
-      <q-toolbar class="bg-dark flex flex-center">
+      <!-- Desktop Layout -->
+      <q-toolbar class="bg-dark flex flex-center desktop-submenu">
         <q-toolbar-title class="q-ml-lg col-4">
           <q-img
             src="../assets/everycar-logo.png"
@@ -86,8 +132,20 @@
           <p>(84) 9 9999-8888</p>
         </div>
       </q-toolbar>
+      <q-toolbar
+        class="bg-dark flex flex-center mobile-submenu"
+        v-show="isAtTop"
+      >
+        <q-toolbar-title class="flex flex-center">
+          <q-img
+            src="../assets/everycar-logo.png"
+            height="150px"
+            width="250px"
+          />
+        </q-toolbar-title>
+      </q-toolbar>
 
-      <div class="bg-amber-8 flex flex-center row no-wrap">
+      <div class="bg-amber-8 flex flex-center row no-wrap desktop-menu-clouths">
         <q-btn
           color="dark"
           class="btn-menu q-mx-lg"
@@ -139,60 +197,6 @@
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Femininas" />
         <q-btn color="dark" class="btn-menu q-mx-lg" flat label="Outlet" />
       </div>
-    </q-header>
-    <q-header elevated v-else>
-      <q-toolbar class="bg-dark flex flex-center">
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-        <q-toolbar-title> MENU </q-toolbar-title>
-        <div class="row">
-          <q-btn flat round>
-            <q-icon name="mdi-cart" />
-          </q-btn>
-          <q-btn flat round>
-            <q-icon name="mdi-magnify" />
-            <q-menu
-              transition-show="slide-down"
-              transition-hide="jump-up"
-              cover
-              style="width: 100%"
-              square
-            >
-              <q-list>
-                <q-item>
-                  <q-item-section>
-                    <q-input borderless dense>
-                      <template v-slot:prepend>
-                        <q-icon name="mdi-arrow-left" />
-                      </template>
-                      <template v-slot:append>
-                        <q-icon name="mdi-magnify" />
-                      </template>
-
-                      <template v-slot:hint> Field hint </template>
-                    </q-input>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-        </div>
-      </q-toolbar>
-      <q-toolbar class="bg-dark flex flex-center" v-show="isAtTop">
-        <q-toolbar-title class="flex flex-center">
-          <q-img
-            src="../assets/everycar-logo.png"
-            height="150px"
-            width="250px"
-          />
-        </q-toolbar-title>
-      </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered>
@@ -291,3 +295,48 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 </script>
+
+<style lang="sass">
+@media (min-width: $breakpoint-sm-max)
+  .mobile-menu-btn
+    display: none
+
+  .title-toolbar-mobile
+    display: none
+
+  .mobile-client-menu
+    display: none
+
+  .desktop-submenu
+    display: flex
+
+  .mobile-submenu
+    display: none
+
+
+
+@media (max-width: $breakpoint-sm-max)
+  .mobile-menu-btn
+    display: block
+
+  .desktop-menu-clouths
+    display: none
+
+  .title-toolbar-desktop
+    display: none
+
+  .title-toolbar-mobile
+    display: block
+
+  .desktop-client-menu
+    display: none
+
+  .mobile-client-menu
+    display: block
+
+  .desktop-submenu
+    display: none
+
+  .mobile-submenu
+    display: flex
+</style>
