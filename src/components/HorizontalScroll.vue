@@ -9,7 +9,7 @@
       @mouseup="stopDrag"
       @mouseleave="stopDrag"
     >
-      <div class="scroll-content">
+      <div class="scroll-content prevent-select">
         <q-card
           v-for="item in heavyList"
           :key="item.id"
@@ -209,5 +209,11 @@ export default {
 .scroll-control {
   pointer-events: auto;
   z-index: 1; /* Garante que os botões estejam sobre o conteúdo */
+}
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 </style>

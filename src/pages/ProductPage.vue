@@ -1,16 +1,27 @@
 <template>
   <q-page>
-    <div class="q-gutter-md row items-start">
-      <q-img
-        src="https://cdn.quasar.dev/img/image-src.png"
-        srcset="https://cdn.quasar.dev/img/image-1x.png 300w,
-                https://cdn.quasar.dev/img/image-2x.png 2x,
-                https://cdn.quasar.dev/img/image-3x.png 3x,
-                https://cdn.quasar.dev/img/image-4x.png 4x"
-        style="height: 280px; max-width: 300px"
-      >
-        <div class="absolute-bottom text-body1 text-center">With srcset</div>
-      </q-img>
+    <div class="q-gutter-md row items-start flex flex-center">
+      <q-img src="bone-produto/1.png" style="height: 560px; max-width: 600px" />
+      <div class="q-ml-xl">
+        <p class="text-h4 ellipsis">Boné Bege N</p>
+        <p class="text-weight-bold ellipsis">Código do produto: 1234</p>
+        <p class="text-weight-thin ellipsis">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <q-card class="my-card">
+          <q-card-section>
+            <div class="row">
+              <q-icon size="xl" name="mdi-credit-card" color="grey" />
+              <p>R$ 159,00</p>
+            </div>
+            <q-btn color="teal">
+              <q-icon left size="3em" name="mdi-cart-outline" />
+
+              <div>COMPRAR</div>
+            </q-btn>
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
   </q-page>
 </template>
@@ -20,3 +31,8 @@ export default {
   setup() {},
 };
 </script>
+<style lang="sass" scoped>
+.my-card
+  width: 100%
+  max-width: 450px
+</style>
