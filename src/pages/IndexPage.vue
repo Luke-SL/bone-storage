@@ -60,6 +60,7 @@ import { figuresList, releaseList, shirtList } from "./assets/tables";
 import HorizontalScroll from "src/components/HorizontalScroll.vue";
 
 export default {
+  name: "IndexPage",
   components: { HorizontalScroll },
   setup() {
     return {

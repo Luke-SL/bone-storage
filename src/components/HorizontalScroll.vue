@@ -17,7 +17,11 @@
           flat
           borderless
         >
-          <q-img :src="item.image" class="item-image" />
+          <q-img
+            :src="item.image"
+            class="item-image cursor-pointer q-hoverable"
+            v-ripple
+          />
           <q-card-section>
             <div class="row no-wrap items-center">
               <div class="col text-h6 ellipsis">{{ item.name }}</div>

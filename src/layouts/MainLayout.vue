@@ -60,10 +60,8 @@
             <p>
               <q-item-label
                 ><q-icon name="mdi-cart text-amber" class="q-mr-xs" />
-                <a href="#" class="text-white credential-links">
-                  CARRINHO</a
-                ></q-item-label
-              >
+                <a href="#" class="text-white credential-links"> CARRINHO </a>
+              </q-item-label>
             </p>
           </div>
         </div>
